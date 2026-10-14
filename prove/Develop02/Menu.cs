@@ -8,11 +8,11 @@ class Menu
 
         while (response >= 1 || response <= 4)
         {
-            Console.WriteLine("Welcome to the Journal Program");
-            Console.WriteLine("Create, Display, Save, and Read Journal Entries");
-            Console.WriteLine("1. Create new journal new entry");
+            Console.WriteLine("Welcome to the Journal Program!");
+            Console.WriteLine("Please select one of the following choices: ");
+            Console.WriteLine("1. Create new journal entry");
             Console.WriteLine("2. Display Journal");
-            Console.WriteLine("3. Save journal file");
+            Console.WriteLine("3. Save journal to file");
             Console.WriteLine("4. Read journal from file");
             Console.WriteLine("5. Quit");
 
@@ -37,12 +37,18 @@ class Menu
             {
                 Console.WriteLine("Where would you like to save this to? (type filename, end with .txt):");
                 j1._filename = Console.ReadLine();
-                j1.SaveJournal();
+                j1.SaveJournal(j1._filename);
             }
 
-            if (response == )
+            if (response == 4)
             {
-                j1.ReadFiles(_file);
+                j1.ReadFiles(j1._filename);
+            }
+
+            else if (response != 1 && response != 2 && response != 3 && response != 4 && response != 5)
+            {
+                Console.Write("Please choose a valid input: ");
+                response = int.Parse(Console.ReadLine());
             }
         }
 

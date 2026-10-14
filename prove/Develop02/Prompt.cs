@@ -1,6 +1,6 @@
 public class Prompts
 {
-    string _textPrompts = "Text_Prompts.txt";
+    string _textPrompts = "PromptsFile.txt";
 
     List<string> prompt_list = new List<string>();
 

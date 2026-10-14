@@ -27,7 +27,13 @@ class Journal
 
     public void SaveJournal(string _filename)
     {
-        using (StreamWriter outputFile = new StreamWriter)
+        using (StreamWriter outputFile = new StreamWriter(_filename))
+        {
+            foreach (Entry entry in newJournal)
+            {
+                outputFile.WriteLine(entry.ToFile());
+            }
+        }
     }
 
     public void ReadFiles(string file)
