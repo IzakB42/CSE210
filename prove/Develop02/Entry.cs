@@ -24,9 +24,9 @@ class Entry
     {
         GetDateTime();
         
-        Prompts _prompts = new Prompts();
-        _prompts._MakePrompts();
-        _prompt = _prompts._RandomPrompt();
+        Prompts newprompts = new Prompts();
+        newprompts._MakePrompts();
+        _prompt = newprompts._RandomPrompt();
         Console.WriteLine(_prompt);
 
         _response = Console.ReadLine();

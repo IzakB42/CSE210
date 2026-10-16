@@ -6,18 +6,18 @@ using System.Reflection.Metadata;
 class Journal
 {
     public string _filename;
-    public List<Entry> newJournal = new List<Entry>();
+    public List<Entry> _entries = new List<Entry>();
     
 
     public void AddEntry(Entry entry)
     {
-        newJournal.Add(entry);
+        _entries.Add(entry);
         
     }
 
     public void DisplayJournal()
     {
-        foreach (Entry entry in newJournal)
+        foreach (Entry entry in _entries)
         {
             Console.WriteLine(entry.DisplayEntry());
         }
@@ -29,7 +29,7 @@ class Journal
     {
         using (StreamWriter outputFile = new StreamWriter(_filename))
         {
-            foreach (Entry entry in newJournal)
+            foreach (Entry entry in _entries)
             {
                 outputFile.WriteLine(entry.ToFile());
             }

@@ -6,6 +6,10 @@ public class Prompts
 
     public void _MakePrompts()
     {
+        
+
+        Console.WriteLine(Directory.GetCurrentDirectory());
+
         string[] lines = System.IO.File.ReadAllLines(_textPrompts);
         foreach (string prompt in lines)
         {
