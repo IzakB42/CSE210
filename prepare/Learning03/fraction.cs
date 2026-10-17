@@ -1,21 +1,23 @@
+using System.Dynamic;
+
 class Fraction
 {
     private int _top;
     private int _bottom;
 
-    Fraction()
+    public Fraction()
     {
         _top = 1;
         _bottom = 1;
     }
 
-    Fraction(int wholeNumber)
+    public Fraction(int wholeNumber)
     {
         _top = wholeNumber;
         _bottom = 1;
     }
 
-    Fraction(int top, int bottom)
+    public Fraction(int top, int bottom)
     {
         _top = top;
         _bottom = bottom;
@@ -38,8 +40,27 @@ class Fraction
 
     public void SetBottom(int bottom)
     {
-        _bottom = bottom;
+        if (bottom != 0)
+        {
+            _bottom = bottom;
+        }
+        else
+        {
+            _bottom = 1;
+        }
     }
 
-    
+    public string GetFractionString()
+    {
+        return $"{_top}/{_bottom}";
+    }
+
+    public double GetDecimalValue()
+    {
+        // double _decimal = (double)_top/_bottom;
+        // Set one of the int to double using this syntax, otherwise _decimal gets rounded whole number answer.
+        // return _decimal;
+
+        return (double)_top/_bottom;
+    }
 }
