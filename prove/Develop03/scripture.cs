@@ -4,3 +4,11 @@
 
 // i++
 // if i < List<words>.Count then run hide word.
+
+class Scripture
+{
+    private List<Word> words;
+    private Reference _reference;
+
+    
+}
