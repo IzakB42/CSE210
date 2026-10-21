@@ -11,11 +11,45 @@ class Scripture
     private Reference _reference;
     private string _text;
 
+    public Scripture(string bookName, int chapter, int verse, string text)
+    {
+        _reference = new Reference(bookName, chapter, verse);
+        _words = ConvertToWords(text);
+    }
+
+    public Scripture(string bookName, int chapter, int startVerse, int endVerse, string text)
+    {
+        _reference = new Reference(bookName, chapter, startVerse, endVerse);
+        _words = ConvertToWords(text);
+    }
+
+    public Scripture(Reference currentRef, string text)
+    {
+        _reference = currentRef;
+        _words = ConvertToWords(text);
+    }
+
+    private List<Word> ConvertToWords(string text)
+    {
+        List<Word> tempWords = new List<Word>();
+
+        string[] words = text.Split(' ');
+        foreach(string word in words)
+        {
+            Word tempword = new Word(word);
+            tempWords.Add(tempword);
+        }
+
+        return tempWords;
+    }
     public void Display()
     {
 
         Console.WriteLine($"{_reference.GetRef()}");
-        Console.Write($"scripture text");
+        foreach (Word word in _words)
+        {
+            word.Display();
+        }
     }
 
     public void HideSomeWords()
@@ -24,6 +58,8 @@ class Scripture
         for(int i=0; i<=3; i++)
         {
             // run the Hide() function for a random word in _words
+            Random r1 = new Random();
+
         }
     }
 

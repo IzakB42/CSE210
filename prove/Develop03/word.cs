@@ -22,21 +22,25 @@ class Word
 
     public void Hide()
     {
+        // _hidden Setter
         _hidden = true;
     }
 
     public bool IsHidden()
     {
+        // _hidden Getter
         return _hidden;
     }
 
     public void Display()
     {
+        // Console Display
         Console.Write($"{GetString()} ");
     }
 
     public string GetString()
     {
+        // returns list of words back as string, hidden ones as underscores
         string returnString = "";
         if (_hidden)
         {
