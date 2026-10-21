@@ -5,11 +5,12 @@
 // i++
 // if i < List<words>.Count then run hide word.
 
+using System.Security.Cryptography;
+
 class Scripture
 {
     private List<Word> _words;
     private Reference _reference;
-    private string _text;
 
     public Scripture(string bookName, int chapter, int verse, string text)
     {
@@ -29,6 +30,47 @@ class Scripture
         _words = ConvertToWords(text);
     }
 
+    public void Memorize()
+    {
+        Display();
+        bool keepGoing = false;
+        string tempAnswer = "test";
+
+        do{
+            keepGoing = false;
+            Console.WriteLine("Press enter to continue or type 'quit' to finish");
+            tempAnswer = Console.ReadLine();
+
+            if (tempAnswer == "")
+            {
+                keepGoing = true;
+            }
+            else
+            {
+                if (tempAnswer == "quit")
+                {
+                    Console.WriteLine("Have a good day!");
+                }
+                else
+                {
+                    while(keepGoing=false && tempAnswer!= "quit")
+                    {
+                        Console.WriteLine("Please enter a valid input");
+                        tempAnswer = Console.ReadLine();
+                    }
+                    
+                }
+            }
+
+            if(keepGoing)
+            {
+                
+                HideSomeWords();
+                Display();
+            }
+
+        }while(tempAnswer != "quit");
+    }
     private List<Word> ConvertToWords(string text)
     {
         List<Word> tempWords = new List<Word>();
@@ -45,7 +87,7 @@ class Scripture
     public void Display()
     {
 
-        Console.WriteLine($"{_reference.GetRef()}");
+        Console.Write($"{_reference.GetRef()} ");
         foreach (Word word in _words)
         {
             word.Display();
@@ -58,7 +100,12 @@ class Scripture
         for(int i=0; i<=3; i++)
         {
             // run the Hide() function for a random word in _words
-            Random r1 = new Random();
+            // also clears the console
+            Random rnd = new Random();
+            int index = rnd.Next(_words.Count);
+            _words[index].Hide();
+
+            Console.Clear();
 
         }
     }
