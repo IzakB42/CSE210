@@ -12,6 +12,7 @@ class Scripture
     private List<Word> _words;
     private Reference _reference;
 
+    // CONSTRUCTORS
     public Scripture(string bookName, int chapter, int verse, string text)
     {
         _reference = new Reference(bookName, chapter, verse);
@@ -30,6 +31,7 @@ class Scripture
         _words = ConvertToWords(text);
     }
 
+    // METHODS
     public void Memorize()
     {
         Console.Clear();
@@ -39,7 +41,9 @@ class Scripture
 
         do{
             keepGoing = false;
-            Console.WriteLine();
+            Console.WriteLine(
+                
+            );
             Console.Write("Press enter to continue or type 'quit' to finish: ");
             tempAnswer = Console.ReadLine();
 
@@ -53,8 +57,7 @@ class Scripture
                 {
                     Console.WriteLine("Please enter a valid input");
                     tempAnswer = Console.ReadLine();
-                }
-                    
+                }    
             }
 
             if(keepGoing)
@@ -116,11 +119,11 @@ class Scripture
         }
     }
 
-    // nuumber of unhidden words returns int
-    // for loop add 1 for each unhidden word in list
-
     private int NumberofUnhiddenWords()
     {
+        // nuumber of unhidden words returns int
+        // for loop add 1 for each unhidden word in list
+        // called in Memorize
         int num = 0;
         foreach (Word word in _words)
         {
