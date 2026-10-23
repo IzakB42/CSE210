@@ -32,13 +32,15 @@ class Scripture
 
     public void Memorize()
     {
+        Console.Clear();
         Display();
         bool keepGoing = false;
         string tempAnswer = "test";
 
         do{
             keepGoing = false;
-            Console.WriteLine("Press enter to continue or type 'quit' to finish");
+            Console.WriteLine();
+            Console.Write("Press enter to continue or type 'quit' to finish: ");
             tempAnswer = Console.ReadLine();
 
             if (tempAnswer == "")
@@ -47,29 +49,23 @@ class Scripture
             }
             else
             {
-                if (tempAnswer == "quit")
+                while(keepGoing=false && tempAnswer!= "quit")
                 {
-                    Console.WriteLine("Have a good day!");
+                    Console.WriteLine("Please enter a valid input");
+                    tempAnswer = Console.ReadLine();
                 }
-                else
-                {
-                    while(keepGoing=false && tempAnswer!= "quit")
-                    {
-                        Console.WriteLine("Please enter a valid input");
-                        tempAnswer = Console.ReadLine();
-                    }
                     
-                }
             }
 
             if(keepGoing)
             {
-                
                 HideSomeWords();
                 Display();
             }
 
-        }while(tempAnswer != "quit");
+        }while(tempAnswer != "quit" && NumberofUnhiddenWords()!=0);
+        Console.WriteLine();
+        Console.WriteLine("Have a good day!");
     }
     private List<Word> ConvertToWords(string text)
     {
@@ -94,20 +90,48 @@ class Scripture
         }
     }
 
-    public void HideSomeWords()
+    private void HideSomeWords()
     {
-        
-        for(int i=0; i<=3; i++)
+        int number_to_hide = 3;
+        if(NumberofUnhiddenWords()<= number_to_hide)
+        {
+            number_to_hide = NumberofUnhiddenWords();
+        }
+        for(int i=0; i<number_to_hide;)
         {
             // run the Hide() function for a random word in _words
             // also clears the console
             Random rnd = new Random();
             int index = rnd.Next(_words.Count);
-            _words[index].Hide();
+            Word temp = _words[index];
+            if (!temp.IsHidden())
+            {
+                _words[index].Hide();
+                i++;
+            }
+            
 
             Console.Clear();
 
         }
     }
+
+    // nuumber of unhidden words returns int
+    // for loop add 1 for each unhidden word in list
+
+    private int NumberofUnhiddenWords()
+    {
+        int num = 0;
+        foreach (Word word in _words)
+        {
+            if (!word.IsHidden())
+            {
+                num++;
+            }
+        }
+
+        return num;
+    }
+
 
 }
