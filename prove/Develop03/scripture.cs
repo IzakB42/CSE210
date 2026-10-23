@@ -93,6 +93,16 @@ class Scripture
         }
     }
 
+    public string FormatScripture()
+    {
+        // Same as Display but returns as one continuous string.
+        string text = "";
+        foreach (Word word in _words)
+        {
+            text= $"{text} {word.GetString()}";
+        }
+        return $"{_reference.GetRef()}{text}";
+    }
     private void HideSomeWords()
     {
         int number_to_hide = 3;
