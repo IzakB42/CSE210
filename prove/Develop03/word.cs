@@ -55,4 +55,16 @@ class Word
         }
         return returnString;
     }
+
+    public string GetFileString()
+    {
+        string returnString = "";
+        if(_hidden)
+        {
+            _hidden=false;
+        }
+        returnString= $"{_word}#";
+
+        return returnString;
+    }
 }

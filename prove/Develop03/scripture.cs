@@ -11,6 +11,7 @@ class Scripture
 {
     private List<Word> _words;
     private Reference _reference;
+    private bool _save = false;
 
     // CONSTRUCTORS
     public Scripture(string bookName, int chapter, int verse, string text)
@@ -41,9 +42,7 @@ class Scripture
 
         do{
             keepGoing = false;
-            Console.WriteLine(
-                
-            );
+            Console.WriteLine();
             Console.Write("Press enter to continue or type 'quit' to finish: ");
             tempAnswer = Console.ReadLine();
 
@@ -67,6 +66,20 @@ class Scripture
             }
 
         }while(tempAnswer != "quit" && NumberofUnhiddenWords()!=0);
+
+        Console.WriteLine("Would you like to save the scripture? (y/n)");
+        string answer = Console.ReadLine();
+        while (answer != "y" && answer != "n")
+        {
+            Console.WriteLine("Please enter a valid input. lowercase y for save, lowercase n to not save");
+            answer = Console.ReadLine();
+        }
+
+        if(_save)
+        {
+            SaveToFile();
+            Console.WriteLine("File saved to scripture_list.txt");
+        }
         Console.WriteLine();
         Console.WriteLine("Have a good day!");
     }
@@ -93,15 +106,23 @@ class Scripture
         }
     }
 
-    public string FormatScripture()
+    private string FormatForFile()
     {
         // Same as Display but returns as one continuous string.
         string text = "";
         foreach (Word word in _words)
         {
-            text= $"{text} {word.GetString()}";
+            text= $"{text} {word.GetFileString()}";
         }
-        return $"{_reference.GetRef()}{text}";
+        return $"{_reference.FileFormat()}{text}";
+    }
+
+    public void SaveToFile()
+    {
+        using (StreamWriter outputFile = new StreamWriter("scripture_list.txt"))
+        {
+                outputFile.WriteLine(FormatForFile());
+        }
     }
     private void HideSomeWords()
     {
