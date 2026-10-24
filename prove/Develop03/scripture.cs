@@ -5,6 +5,7 @@
 // i++
 // if i < List<words>.Count then run hide word.
 
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
 class Scripture
@@ -66,7 +67,7 @@ class Scripture
             }
 
         }while(tempAnswer != "quit" && NumberofUnhiddenWords()!=0);
-
+        Console.WriteLine();
         Console.WriteLine("Would you like to save the scripture? (y/n)");
         string answer = Console.ReadLine();
         while (answer != "y" && answer != "n")
@@ -74,13 +75,16 @@ class Scripture
             Console.WriteLine("Please enter a valid input. lowercase y for save, lowercase n to not save");
             answer = Console.ReadLine();
         }
+        if(answer == "y")
+        {
+            _save = true;
+        }
 
         if(_save)
         {
             SaveToFile();
             Console.WriteLine("File saved to scripture_list.txt");
         }
-        Console.WriteLine();
         Console.WriteLine("Have a good day!");
     }
     private List<Word> ConvertToWords(string text)
@@ -119,11 +123,45 @@ class Scripture
 
     public void SaveToFile()
     {
-        using (StreamWriter outputFile = new StreamWriter("scripture_list.txt"))
+        using (StreamWriter outputFile = new StreamWriter("scripture_list.txt", true))
+        // Second parameter as true appends to outputfile rather than overwriting it
         {
                 outputFile.WriteLine(FormatForFile());
         }
     }
+
+    public void ReadFromFile()
+    {
+        string[] lines = System.IO.File.ReadAllLines("scripture_list.txt");
+        int i =0;
+        Reference tempref;
+        foreach (string line in lines)
+        {
+            i++;
+            string[] parts = line.Split('#');
+            
+            bool multi = bool.Parse(parts[0]);
+            string book = parts[1];
+            int chapter = int.Parse(parts[2]);
+            
+            if (multi)
+            {
+                int startVerse = int.Parse(parts[3]);
+                int endVerse = int.Parse(parts[4]);
+
+                tempref = new Reference(book, chapter, startVerse, endVerse);
+            }
+            else
+            {
+                int verse = int.Parse(parts[3]);
+                tempref = new Reference(book, chapter, verse);
+            }
+            Console.Write($"{i}. ");
+            tempref.Display();
+
+        }
+    }
+
     private void HideSomeWords()
     {
         int number_to_hide = 3;
