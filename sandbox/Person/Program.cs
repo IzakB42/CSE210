@@ -3,6 +3,7 @@
     
     static void Main()
     {
-        Console.WriteLine("Hello Bob");
+        Person p1 = new Person("Jozzy", "Jeshim", 42, 110);
+        p1.DisplayPersonInfo();
     }
 }
