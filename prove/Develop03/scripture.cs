@@ -132,9 +132,12 @@ class Scripture
 
     public void ReadFromFile()
     {
+        Console.Clear();
         string[] lines = System.IO.File.ReadAllLines("scripture_list.txt");
         int i =0;
         Reference tempref;
+        int number;
+
         foreach (string line in lines)
         {
             i++;
@@ -158,7 +161,23 @@ class Scripture
             }
             Console.Write($"{i}. ");
             tempref.Display();
+            Console.WriteLine();
+        }
 
+        Console.Write("Type the number of the scripture to memorize: ");
+        string choice = Console.ReadLine();
+        try
+        {
+            number = int.Parse( choice);
+            if(number <= i)
+            {
+                
+            }
+        }
+        catch(FormatException)
+        {
+            Console.WriteLine("Please enter a valid number");
+            choice = Console.ReadLine();
         }
     }
 
