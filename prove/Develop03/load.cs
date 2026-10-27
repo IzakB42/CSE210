@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 class Load
 {
     private int i =0;
@@ -28,12 +30,14 @@ class Load
         string choice = Console.ReadLine();
         try
         {
-            _number = int.Parse( choice);
+            _number = int.Parse(choice)-1;
             if(_number <= i)
             {
-                string line = lines[i];
+                string line = lines[_number];
                 Reference finalRef = FormatFromFile(line);
-                _script = new Scripture(finalRef, )
+                _script = new Scripture(finalRef, "Here is the test scripture text.");
+                _script.SetChoice(1);
+                _script.Memorize();
             }
         }
         catch(FormatException)

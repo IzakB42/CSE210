@@ -13,6 +13,7 @@ class Scripture
     private List<Word> _words;
     private Reference _reference;
     private bool _save = false;
+    private int _choice = 2;
 
     // CONSTRUCTORS
     public Scripture(string bookName, int chapter, int verse, string text)
@@ -34,6 +35,10 @@ class Scripture
     }
 
     // METHODS
+    public void SetChoice(int number)
+    {
+        _choice = number;
+    }
     public void Memorize()
     {
         Console.Clear();
@@ -68,22 +73,25 @@ class Scripture
 
         }while(tempAnswer != "quit" && NumberofUnhiddenWords()!=0);
         Console.WriteLine();
-        Console.WriteLine("Would you like to save the scripture? (y/n)");
-        string answer = Console.ReadLine();
-        while (answer != "y" && answer != "n")
+        if (_choice == 2)
         {
-            Console.WriteLine("Please enter a valid input. lowercase y for save, lowercase n to not save");
-            answer = Console.ReadLine();
-        }
-        if(answer == "y")
-        {
-            _save = true;
-        }
+            Console.WriteLine("Would you like to save the scripture? (y/n)");
+            string answer = Console.ReadLine();
+            while (answer != "y" && answer != "n")
+            {
+                Console.WriteLine("Please enter a valid input. lowercase y for save, lowercase n to not save");
+                answer = Console.ReadLine();
+            }
+            if(answer == "y")
+            {
+                _save = true;
+            }
 
-        if(_save)
-        {
-            SaveToFile();
-            Console.WriteLine("File saved to scripture_list.txt");
+            if(_save)
+            {
+                SaveToFile();
+                Console.WriteLine("File saved to scripture_list.txt");
+            }
         }
         Console.WriteLine("Have a good day!");
     }
