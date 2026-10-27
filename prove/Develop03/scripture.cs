@@ -130,57 +130,6 @@ class Scripture
         }
     }
 
-    public void ReadFromFile()
-    {
-        Console.Clear();
-        string[] lines = System.IO.File.ReadAllLines("scripture_list.txt");
-        int i =0;
-        Reference tempref;
-        int number;
-
-        foreach (string line in lines)
-        {
-            i++;
-            string[] parts = line.Split('#');
-            
-            bool multi = bool.Parse(parts[0]);
-            string book = parts[1];
-            int chapter = int.Parse(parts[2]);
-            
-            if (multi)
-            {
-                int startVerse = int.Parse(parts[3]);
-                int endVerse = int.Parse(parts[4]);
-
-                tempref = new Reference(book, chapter, startVerse, endVerse);
-            }
-            else
-            {
-                int verse = int.Parse(parts[3]);
-                tempref = new Reference(book, chapter, verse);
-            }
-            Console.Write($"{i}. ");
-            tempref.Display();
-            Console.WriteLine();
-        }
-
-        Console.Write("Type the number of the scripture to memorize: ");
-        string choice = Console.ReadLine();
-        try
-        {
-            number = int.Parse( choice);
-            if(number <= i)
-            {
-                
-            }
-        }
-        catch(FormatException)
-        {
-            Console.WriteLine("Please enter a valid number");
-            choice = Console.ReadLine();
-        }
-    }
-
     private void HideSomeWords()
     {
         int number_to_hide = 3;
