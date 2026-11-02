@@ -51,7 +51,7 @@ class Program
             // Scripture(book, chapter, verse, text)
             // Or Scripture(book, chapter, start verse, end verse, text)
 
-            Scripture s1 = new Scripture("3 Nephi", 11, 10, 10, "10 Behold, I am Jesus Christ, whom the prophets testified shall come into the world. 11 And behold, I am the light and the life of the world; and I have drunk out of that bitter cup which the Father hath given me, and have glorified the Father in taking upon me the sins of the world, in the which I have suffered the will of the Father in all things from the beginning.");
+            Scripture s1 = new Scripture("1 Nephi", 2, 15, "And my father dwelt in a tent.");
             s1.Memorize();
         }
     }

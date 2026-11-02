@@ -35,6 +35,10 @@ class Load
             {
                 string line = lines[_number];
                 Reference finalRef = FormatFromFile(line);
+
+                // LAST THING TO DO!!! YOU GOT THIS!!!
+                // Find a way to set string text to line parts[4 or 5 (depending on multi verse)]
+                // through the last entry in the line
                 _script = new Scripture(finalRef, "Here is the test scripture text.");
                 _script.SetChoice(1);
                 _script.Memorize();

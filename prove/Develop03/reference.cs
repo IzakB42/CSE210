@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 class Reference
 {
-    private bool _mulitVerse;
+    private bool _multiVerse;
     private string _book;
     private int _chapter;
     private int[] _verse = new int[2];
@@ -12,7 +12,7 @@ class Reference
         _book = book;
         _chapter = chapter;
         _verse[0] = verse;
-        _mulitVerse = false;
+        _multiVerse = false;
     }
 
     public Reference(string book, int chapter, int startverse, int endverse)
@@ -21,7 +21,7 @@ class Reference
         _chapter = chapter;
         _verse[0] = startverse;
         _verse[1] = endverse;
-        _mulitVerse = true;
+        _multiVerse = true;
     }
 
     private string Format()
