@@ -11,7 +11,7 @@ class Program
         // Console.WriteLine(ma1.GetSummary());
         // Console.WriteLine(ma1.GetHomeworkList());
 
-        WritingAssignment w1 = new WritingAssignment("Shmebadoo", "Calculator class", "The Invention of the Calculator by Shmebadoo");
+        WritingAssignment w1 = new WritingAssignment("Shmebadoo", "Calculator class", "The Invention of the Calculator");
         Console.WriteLine(w1.GetWritingInformation());
 
     }
