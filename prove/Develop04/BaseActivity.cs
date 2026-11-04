@@ -8,11 +8,12 @@ class BaseActivity
     }
     public void RunCountDownMessage(string message, int seconds)
     {
+        
         Console.CursorVisible= false;
         for(int i=seconds; i>=1; i--)
         {
             Console.Clear();
-            Console.WriteLine($"{i} - {message}");
+            Console.WriteLine($"{message} : {i}");
             Thread.Sleep(1000);
             // Tells program to sleep for 1000 milliseconds, ie 1 second.
         }
@@ -23,8 +24,10 @@ class BaseActivity
         Console.CursorVisible=false;
         Console.Clear();
         Console.Write($"{message} ");
+        DateTime endTime = DateTime.Now.AddSeconds(seconds);
 
-        for(int i=0; i < seconds; i++)
+        // for(int i=0; i < seconds; i++)
+        while(DateTime.Now < endTime)
         {
             Console.Write("+");
             Thread.Sleep(200);
