@@ -53,11 +53,11 @@ class Reference
         string returnRef;
         if(_verse[1] == 0)
         {
-            returnRef = $"{_mulitVerse}#{_book}#{_chapter}#{_verse[0]}#";
+            returnRef = $"{_multiVerse}#{_book}#{_chapter}#{_verse[0]}#";
         }
         else
         {
-            returnRef = $"{_mulitVerse}#{_book}#{_chapter}#{_verse[0]}#{_verse[1]}#";
+            returnRef = $"{_multiVerse}#{_book}#{_chapter}#{_verse[0]}#{_verse[1]}#";
         }
         
         return returnRef;
