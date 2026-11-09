@@ -6,6 +6,31 @@ class BaseActivity
     {
         
     }
+    public void DisplayGreeting()
+    {
+        
+    }
+    public void DisplayDescription()
+    {
+        
+    }
+    public void DisplayEnding()
+    {
+        
+    }
+    public void DisplaySpinner(string Message, int seconds)
+    {
+        
+    }
+    public void StartTimer()
+    {
+        
+    }
+    public void ObtainDuration()
+    {
+        
+    }
+    
     public void RunCountDownMessage(string message, int seconds)
     {
         

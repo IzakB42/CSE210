@@ -5,6 +5,7 @@ class Load
     private int i =0;
     private int _number;
     private string _filename;
+    private Reference _ref;
     private Scripture _script;
 
     public Load(string file)
@@ -20,7 +21,7 @@ class Load
         foreach (string line in lines)
         {
             i++;
-            Reference tempref = FormatFromFile(line);
+            Reference tempref = FormatRefFromFile(line);
             Console.Write($"{i}. ");
             tempref.Display();
             Console.WriteLine();
@@ -34,12 +35,13 @@ class Load
             if(_number <= i)
             {
                 string line = lines[_number];
-                Reference finalRef = FormatFromFile(line);
+                _ref = FormatRefFromFile(lines[_number]);
+                _script = FormatFromFile(line);
 
                 // LAST THING TO DO!!! YOU GOT THIS!!!
                 // Find a way to set string text to line parts[4 or 5 (depending on multi verse)]
-                // through the last entry in the line
-                _script = new Scripture(finalRef, "Here is the test scripture text.");
+                // through the last entry in the line. In FormatFromFile method
+
                 _script.SetChoice(1);
                 _script.Memorize();
             }
@@ -50,29 +52,62 @@ class Load
             choice = Console.ReadLine();
         }
     }
-
-    private Reference FormatFromFile(string line)
+    private Reference FormatRefFromFile(string line)
     {
-        Reference tempref;
+        Reference tempRef;
         string[] parts = line.Split('#');
-            
-            bool multi = bool.Parse(parts[0]);
-            string book = parts[1];
-            int chapter = int.Parse(parts[2]);
-            
-            if (multi)
+        bool multi = bool.Parse(parts[0]);
+        string book = parts[1];
+        int chapter = int.Parse(parts[2]);
+
+        if (multi)
             {
                 int startVerse = int.Parse(parts[3]);
                 int endVerse = int.Parse(parts[4]);
 
-                tempref = new Reference(book, chapter, startVerse, endVerse);
+                tempRef = new Reference(book, chapter, startVerse, endVerse);
             }
             else
             {
                 int verse = int.Parse(parts[3]);
-                tempref = new Reference(book, chapter, verse);
+
+                tempRef = new Reference(book, chapter, verse);
             }
+
+        return tempRef;
+    }
+    private Scripture FormatFromFile(string line)
+    {
+        Scripture tempScript;
+        string[] parts = line.Split('#');      
+        bool multi = bool.Parse(parts[0]);
+        string text;
+
+        if (multi)
+        {
+            text = $"{parts[5]}";
+            for(int i=4; i<= parts.Length; i++)
+            {
+                if(i>5)
+                {
+                    text = $"{text}{parts[i]}";
+                }
+            }
+        }
+        else
+        {
+            text = $"{parts[4]}";
+
+            for(int i=4; i<= parts.Length; i++)
+            {
+                if(i>5)
+                {
+                    text = $"{text}{parts[i]}";
+                }
+            }
+        }
+        tempScript = new Scripture(_ref, text);
         
-        return tempref;
+        return tempScript;
     }
 }
