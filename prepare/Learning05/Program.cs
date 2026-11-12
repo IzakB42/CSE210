@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Learning05 World!");
+        Square sq1 = new Square(2.5);
+        Console.WriteLine(sq1.GetArea());
     }
 }
