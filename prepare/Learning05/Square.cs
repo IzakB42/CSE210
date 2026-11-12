@@ -1,6 +1,7 @@
 public class Square : Shape
 {
     private double _side;
+    
     public Square(double side)
     {
         _side = side;
